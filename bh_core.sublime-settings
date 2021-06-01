@@ -1,0 +1,6 @@
+{
+  "high_visibility_enabled_by_default": false,
+  "search_threshold": 50000,
+  "no_multi_select_icons": true,
+  "gutter_icons": true
+}

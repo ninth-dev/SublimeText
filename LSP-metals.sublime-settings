@@ -1,0 +1,10 @@
+{
+  "server_version": "0.10.4",
+  "settings": {
+    "metals": {
+      "show-implicit-arguments": false,
+      "show-implicit-conversions-and-classes": false,
+      "show-inferred-type": false
+    }
+  }
+}

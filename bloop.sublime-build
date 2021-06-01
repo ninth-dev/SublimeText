@@ -1,0 +1,39 @@
+{
+  "target": "terminus_open",
+  "auto_close": false,
+  "title": "Bloop",
+  "tag": "Bloop",
+  "timeit": true,
+  "post_window_hooks": [
+    ["unselect_others"],
+    ["select_to_left"]
+  ],
+  "selector": "source.scala",
+  "file_patterns": ["*.scala"],
+  "file_regex": "^\\[E\\] \\[E\\d+\\] (..*?):(\\d+):(\\d+)",
+  "working_dir": "$folder",
+  "shell_cmd": "bloop compile `bloop projects | head -1`",
+  "variants": [
+    {
+      "name": "Test",
+      "shell_cmd": "bloop test `bloop projects | head -1` --only \"*${file_base_name}\" --only \"*${file_base_name}Spec\""
+    },
+    {
+      "name": "Test All",
+      "shell_cmd": "bloop test `bloop projects | head -1`"
+    },
+    {
+      "name": "Run",
+      "shell_cmd": "bloop run `bloop projects | head -1`"
+    },
+    {
+      "name": "Clean",
+      "shell_cmd": "bloop clean"
+    },
+    {
+      "name": "Import Build",
+      "shell_cmd": "sbt bloopInstall && bloop compile `bloop projects | head -1`",
+      "keyfiles": ["metals.sbt"]
+    }
+  ]
+}
