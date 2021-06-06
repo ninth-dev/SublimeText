@@ -1,7 +1,7 @@
 [
   // To prevent overrides from plugins
-  { "keys": ["ctrl+minus"], "command": "jump_back" },
-  { "keys": ["ctrl+shift+minus"], "command": "jump_forward" },
+  { "keys": ["super+["], "command": "jump_back" },
+  { "keys": ["super+]"], "command": "jump_forward" },
   //  Go To Definition
   { "keys": ["super+alt+down"], "command": "goto_definition", "args": { "side_by_side": true, "clear_to_right": true } },
   { "keys": ["super+alt+down"], "command": "lsp_symbol_definition", "args": { "side_by_side": true }, "context":
@@ -40,9 +40,6 @@
   },
   { "keys": ["super+enter"], "command": "lsp_code_actions", "context":
     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider"}]
-  },
-  { "keys": ["enter"], "command": "commit_completion", "context":
-    [{ "key": "auto_complete_visible" }]
   },
   { "keys": ["tab"], "command": "commit_completion", "context":
     [{ "key": "auto_complete_visible" }]

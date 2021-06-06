@@ -1,0 +1,27 @@
+{
+  "rules": [
+    {
+      "name": "Entity name - class",
+      "scope": "entity.name.class",
+      "foreground": "var(blue)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Entity name - import",
+      "scope": "entity.name.import",
+      "foreground": "var(white3)"
+    },
+    {
+      "name": "Meta - Bracket",
+      "scope": "meta.bracket",
+      "foreground": "var(white3)",
+      "font_style": "glow"
+    },
+    {
+      "name": "Keyword - Import",
+      "scope": "keyword.other.import",
+      "foreground": "var(pink)",
+      "font_style": "italic"
+    }
+  ]
+}
