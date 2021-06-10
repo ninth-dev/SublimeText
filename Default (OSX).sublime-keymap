@@ -32,7 +32,7 @@
   },
 
   // Trigger Signature Help
-  { "keys": ["primary+alt+space"], "command": "noop", "context":
+  { "keys": ["super+shift+h"], "command": "noop", "context":
     [{"key": "lsp.signature_help", "operator": "equal", "operand": 0 }]
   },
   { "keys": ["super", "super"], "command": "lsp_hover", "context":

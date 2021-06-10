@@ -16,7 +16,7 @@
   "variants": [
     {
       "name": "Test",
-      "shell_cmd": "bloop test `bloop projects | head -1` --only \"*${file_base_name}\" --only \"*${file_base_name}Spec\""
+      "shell_cmd": "bloop test `bloop projects | head -1` --only \"*${file_base_name}\" --only \"*${file_base_name}Spec\" --only \"*${file_base_name}Suite\""
     },
     {
       "name": "Test All",
@@ -29,6 +29,10 @@
     {
       "name": "Clean",
       "shell_cmd": "bloop clean"
+    },
+    {
+      "name": "Console",
+      "shell_cmd": "bloop console `bloop projects | head -1`"
     },
     {
       "name": "Import Build",

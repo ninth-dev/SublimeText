@@ -2,6 +2,7 @@
 // and are overridden in turn by syntax-specific settings.
 {
   "auto_complete_commit_on_tab": true,
+  "mini_auto_complete": true,
   "always_show_minimap_viewport": true,
   "show_encoding": true,
   "show_line_endings": true,

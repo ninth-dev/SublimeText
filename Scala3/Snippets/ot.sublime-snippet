@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+object ${1}:
+  opaque type ${1} = ${2:String}
+  def parse(input: ${3:String}) : Option[${1}] = ${0:???}
+  def value(${4}: ${1}) : ${2:String} = ${4}
+end ${1}
+]]></content>
+  <tabTrigger>ot</tabTrigger>
+  <scope>source.scala</scope>
+  <description>opaque type</description>
+</snippet>
