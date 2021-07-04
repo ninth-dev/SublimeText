@@ -1,13 +1,8 @@
 {
-  "target": "terminus_open",
+  "target": "terminus_exec",
+  "cancel": "terminus_cancel_build",
   "auto_close": false,
-  "title": "Bloop",
-  "tag": "Bloop",
   "timeit": true,
-  "post_window_hooks": [
-    ["unselect_others"],
-    ["select_to_left"]
-  ],
   "selector": "source.scala",
   "file_patterns": ["*.scala"],
   "file_regex": "^\\[E\\] \\[E\\d+\\] (..*?):(\\d+):(\\d+)",
