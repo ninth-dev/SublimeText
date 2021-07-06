@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+BASE_URL=${0:http://localhost:8080/}
+
+jq --null-input --raw-output --compact-output \
+  --arg arg1 "\${x}" \
+  --argjson arg2 "\${y}" \
+  --argjson arg3 "\${z}" \
+  '{ aString: \$arg1, aNumber: \$arg2, aBoolean: \$arg3}' \
+| curl --request POST --data '@-'  \
+    --silent --compressed --insecure \
+    --include \
+    --header "X-Transaction-Id: ???" \
+    --header "Content-Type: application/json" \
+    \$BASE_URL
+]]></content>
+  <tabTrigger>curl-post</tabTrigger>
+  <description>cURL: POST request</description>
+  <scope>source.shell.bash</scope>
+</snippet>

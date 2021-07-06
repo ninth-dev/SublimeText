@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+BASE_URL=${0:http://localhost:8080/}
+
+curl --request GET \
+  --silent --compressed --insecure \
+  --include \
+  --header "Content-Type: application/json" \
+  --header "X-Transaction-Id: ???" \
+  --data-urlencode 'q=something[1]' \
+  --data-urlencode 'q=anotherOne' \
+  \$BASE_URL
+]]></content>
+  <tabTrigger>curl-get</tabTrigger>
+  <description>cURL: GET request</description>
+  <scope>source.shell.bash</scope>
+</snippet>
