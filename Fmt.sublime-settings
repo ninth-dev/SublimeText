@@ -1,0 +1,17 @@
+{
+  "rules": [
+    {
+      "selector": "source.scala",
+      "cmd": [
+        "scalafmt-native",
+        "--stdin",
+        "--assume-filename",
+        "$file_name",
+        "--stdout",
+        "--non-interactive"
+       ],
+    }
+  ],
+  "cwd_mode": "project_root",
+  "format_on_save": true
+}
