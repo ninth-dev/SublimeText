@@ -1,0 +1,10 @@
+// Settings in here override those in "LSP-typescript/LSP-typescript.sublime-settings"
+
+{
+  "command": [
+    "${node_bin}",
+    "${server_path}",
+    "--stdio",
+    "--tsserver-path=${folder}/node_modules/typescript/lib/tsserver.js",
+  ]
+}
