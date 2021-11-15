@@ -1,5 +1,4 @@
 {
-  "server_version": "0.10.4",
   "settings": {
     "metals": {
       "show-implicit-arguments": false,
