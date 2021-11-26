@@ -1,5 +1,6 @@
 // Settings in here override those in "TrailingSpaces/trailing_spaces.sublime-settings"
 
 {
-  "include_current_line" : false
+  "include_current_line" : false,
+  "modified_lines_only": true
 }

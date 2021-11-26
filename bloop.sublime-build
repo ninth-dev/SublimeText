@@ -5,6 +5,7 @@
   "timeit": true,
   "selector": "source.scala",
   "file_patterns": ["*.scala"],
+  "keyfiles": ["metals.sbt"],
   "file_regex": "^\\[E\\] \\[E\\d+\\] (..*?):(\\d+):(\\d+)",
   "working_dir": "$folder",
   "shell_cmd": "bloop compile `bloop projects | head -1`",
@@ -31,8 +32,7 @@
     },
     {
       "name": "Import Build",
-      "shell_cmd": "sbt bloopInstall && bloop compile `bloop projects | head -1`",
-      "keyfiles": ["metals.sbt"]
+      "shell_cmd": "sbt bloopInstall && bloop compile `bloop projects | head -1`"
     }
   ]
 }

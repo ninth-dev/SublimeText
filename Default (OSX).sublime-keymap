@@ -1,7 +1,8 @@
 [
   // To prevent overrides from plugins
-  { "keys": ["super+["], "command": "jump_back" },
-  { "keys": ["super+]"], "command": "jump_forward" },
+  { "keys": ["ctrl+["], "command": "jump_back" },
+  { "keys": ["ctrl+]"], "command": "jump_forward" },
+
   //  Go To Definition
   { "keys": ["super+alt+down"], "command": "goto_definition", "args": { "side_by_side": true, "clear_to_right": true } },
   { "keys": ["super+alt+down"], "command": "lsp_symbol_definition", "args": { "side_by_side": true }, "context":
@@ -11,11 +12,17 @@
     ]
   },
 
+  // https://microsoft.github.io/language-server-protocol/specifications/specification-3-17/#serverCapabilities
+  // to find the operand for `lsp.session_with_capability`
+
+  // find all the commands for lsp_
+
   // Go To Type Defintion XXX - Define them when we really need them
   // Go To Declaration XXX - Define them when we really need them
   // Go To Implemention XXX - Define them when we really need them
 
   // Find References
+
   { "keys": ["super+alt+shift+down"], "command": "goto_reference", "args": { "side_by_side": true, "clear_to_right": true } },
   { "keys": ["super+alt+shift+down"], "command": "lsp_symbol_references", "context":
     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "referencesProvider" }]
@@ -23,7 +30,7 @@
 
   // Document Symbols (a replacement for ST's "Goto Symbol")
   { "keys": ["super+r"], "command": "lsp_document_symbols", "context":
-     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "workspaceSymbolProvider" }]
+     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "documentSymbolProvider" }]
   },
 
   // Workspace Symbols (a replacement for ST's "Goto Symbol In Project")
@@ -32,16 +39,38 @@
   },
 
   // Trigger Signature Help
-  { "keys": ["super+shift+h"], "command": "noop", "context":
-    [{"key": "lsp.signature_help", "operator": "equal", "operand": 0 }]
+  { "keys": ["super+shift+h"], "command": "lsp_signature_help_show", "context":
+    [{ "key": "lsp.signature_help_available", "operator": "equal", "operand": true }]
   },
+
+  { "keys": ["super", "super"], "command": "lsp_hover", "args": {"use_selection": true}, "context":
+    [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider" },
+     {"key": "selector", "operator": "equal", "operand": "source.scala"}]
+  },
+  // { "keys": ["super", "super"], "command": "lsp_metals_hover_range", "context":
+  //   [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider" },
+  //    {"key": "selector", "operator": "equal", "operand": "source.scala"}]
+  // },
   { "keys": ["super", "super"], "command": "lsp_hover", "context":
-    [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider" }]
+    [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider" },
+     {"key": "selector", "operator": "not_equal", "operand": "source.scala"}]
+  },
+  { "keys": ["super+shift+a"], "command": "lsp_expand_selection", "context":
+    [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "selectionRangeProvider" }]
   },
   { "keys": ["super+enter"], "command": "lsp_code_actions", "context":
     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider"}]
   },
   { "keys": ["tab"], "command": "commit_completion", "context":
     [{ "key": "auto_complete_visible" }]
-  }
+  },
+
+  { "keys" : ["super+k", "super+c"], "command": "chain", "args": {
+    "commands":
+      [
+        {"command": "show_at_center"},
+        {"command": "scroll_lines", "args": {"amount": -8.0} }
+      ]
+    }
+  },
 ]

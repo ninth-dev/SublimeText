@@ -1,9 +1,23 @@
 {
+  "server_version": "0.10.9",
+  "server_properties":[
+    "-Dmetals.client=sublime",
+    "-XX:+UseG1GC",
+    "-XX:+UseStringDeduplication",
+    "-XX:+UnlockExperimentalVMOptions",
+    "-XX:+UseJVMCICompiler",
+    "-Xss4m",
+    "-Xms100m"
+  ],
   "settings": {
     "metals": {
       "show-implicit-arguments": false,
       "show-implicit-conversions-and-classes": false,
       "show-inferred-type": false
     }
+  },
+  "initializationOptions":  {
+    // "inlineDecorationProvider": false,
+    "icons": "none"
   }
 }
