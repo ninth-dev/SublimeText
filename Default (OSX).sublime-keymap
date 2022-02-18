@@ -43,22 +43,17 @@
     [{ "key": "lsp.signature_help_available", "operator": "equal", "operand": true }]
   },
 
-  { "keys": ["super", "super"], "command": "lsp_hover", "args": {"use_selection": true}, "context":
-    [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider" },
-     {"key": "selector", "operator": "equal", "operand": "source.scala"}]
+  { "keys": ["super", "super"], "command": "lsp_hover", "context":
+    [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider" }]
   },
   // { "keys": ["super", "super"], "command": "lsp_metals_hover_range", "context":
   //   [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider" },
   //    {"key": "selector", "operator": "equal", "operand": "source.scala"}]
   // },
-  { "keys": ["super", "super"], "command": "lsp_hover", "context":
-    [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider" },
-     {"key": "selector", "operator": "not_equal", "operand": "source.scala"}]
-  },
   { "keys": ["super+shift+a"], "command": "lsp_expand_selection", "context":
     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "selectionRangeProvider" }]
   },
-  { "keys": ["super+enter"], "command": "lsp_code_actions", "context":
+  { "keys": ["option+enter"], "command": "lsp_code_actions", "context":
     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider"}]
   },
   { "keys": ["tab"], "command": "commit_completion", "context":
@@ -73,4 +68,24 @@
       ]
     }
   },
+
+  { "keys" : ["ctrl+0"], "command": "chain", "args": {
+    "commands":
+      [
+        {"command": "focus_side_bar"},
+        {"command": "focus_side_bar"}
+      ]
+    }
+  },
+
+  { "keys" : ["super+j", "super+b"], "command": "chain", "args": {
+    "commands":
+      [
+        {"command": "unfold_all"},
+        {"command": "reg_replace", "args": {"replacements": ["fold-blocks"], "action": "fold" }},
+        {"command": "foldr_next"},
+        {"command": "unfold"}
+      ]
+    }
+  }
 ]

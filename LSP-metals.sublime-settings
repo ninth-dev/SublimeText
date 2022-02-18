@@ -1,5 +1,5 @@
 {
-  "server_version": "0.10.9",
+  "server_version": "0.11.1",
   "server_properties":[
     "-Dmetals.client=sublime",
     "-XX:+UseG1GC",
@@ -11,9 +11,10 @@
   ],
   "settings": {
     "metals": {
-      "show-implicit-arguments": false,
-      "show-implicit-conversions-and-classes": false,
-      "show-inferred-type": false
+      "superMethodLensesEnabled": true,
+      "showInferredType": false,
+      "showImplicitArguments": false,
+      "showImplicitConversionsAndClasses": false
     }
   },
   "initializationOptions":  {

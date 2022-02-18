@@ -1,0 +1,17 @@
+[
+    {
+        "caption": "Fold imports",
+        "command": "reg_replace",
+        "args": {"replacements": ["fold-imports"], "action": "fold" }
+    },
+    {
+        "caption": "Fold Blocks",
+        "command": "reg_replace",
+        "args": {"replacements": ["fold-blocks"], "action": "fold" }
+    },
+    {
+        "caption": "Fold Comments",
+        "command": "reg_replace",
+        "args": {"replacements": ["fold-comments"], "action": "fold" }
+    },
+]

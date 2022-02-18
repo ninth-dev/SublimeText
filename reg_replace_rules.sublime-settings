@@ -1,0 +1,26 @@
+{
+  "replacements":
+  {
+    "fold-imports":
+    {
+      "name": "fold-imports",
+      "scope": "meta.import",
+      "greedy": true,
+      "greedy_scope": true,
+    },
+    "fold-blocks":
+    {
+      "name": "fold-blocks",
+      "scope": "meta.block",
+      "greedy": true,
+      "greedy_scope": true,
+    },
+    "fold-comments":
+    {
+      "name": "fold-comments",
+      "scope": "comment",
+      "greedy": true,
+      "greedy_scope": true,
+    },
+  },
+}

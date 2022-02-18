@@ -5,7 +5,7 @@ file_extensions:
   - scala
   - sbt
   - sc
-first_line_match: ^#!/.*\b\w*scala\b
+# first_line_match: ^#!/.*\b\w*scala\b
 scope: source.scala
 contexts:
   main:

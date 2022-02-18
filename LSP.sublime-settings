@@ -1,16 +1,10 @@
 {
 	// "log_debug": true,
 	// "log_server": ["panel"],
+	"show_view_status": true,
 	"show_references_in_quick_panel": true,
 	"show_diagnostics_count_in_view_status": true,
 	"show_code_actions": "",
 	"show_code_actions_in_hover": false,
-	"show_symbol_action_links": false,
-	"clients":
-	{
-		"metals":
-		{
-			"enabled": true,
-		},
-	},
+	"show_symbol_action_links": false
 }
