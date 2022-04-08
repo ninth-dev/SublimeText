@@ -1,5 +1,5 @@
 {
-  "server_version": "0.11.1",
+  "server_version": "0.11.2",
   "server_properties":[
     "-Dmetals.client=sublime",
     "-XX:+UseG1GC",
@@ -19,6 +19,7 @@
   },
   "initializationOptions":  {
     // "inlineDecorationProvider": false,
+    "doctorProvider": "html",
     "icons": "none"
   }
 }
