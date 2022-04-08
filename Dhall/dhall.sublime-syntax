@@ -1,0 +1,321 @@
+%YAML 1.2
+---
+name: Dhall
+file_extensions:
+  - dhall
+scope: source.dhall
+contexts:
+  main:
+    - include: expression
+  assignment:
+    - match: '='
+      scope: keyword.operator.assignment.dhall
+  block_comment:
+    - match: '\{-'
+      push:
+        - meta_scope: comment.block.dhall
+        - match: '-\}'
+          pop: true
+        - include: block_comment
+  comments:
+    - include: line_comment
+    - include: block_comment
+  env:
+    - match: '(env)(:)((?:(?:\p{Alpha}|_)(?:\p{Alpha}|\d|_)*))(?:\s*(sha256)(:)((?:[0-9a-fA-F]){64}))?(?:\s*(as)\s*(Text))?'
+      captures:
+        1: storage.modifier.environment-variable.dhall
+        2: punctuation.separator.colon.dhalll
+        3: string.unquoted.environment-variable.dhall
+        4: storage.modifier.hash.dhall
+        5: punctuation.separator.colon.dhall
+        6: constant.numeric.integer.hash.dhall
+        7: storage.modifier.as.dhall
+        8: storage.type.dhall
+    - match: '(env)(:)(")((?:(?:\["\abfnrtv]|[^"\=])+))(")(?:\s*(sha256)(:)((?:[0-9a-fA-F]){64}))?(?:\s*(as)\s*(Text))?'
+      captures:
+        1: storage.modifier.environment-variable.dhall
+        2: punctuation.separator.colon.dhall
+        3: punctuation.definition.string.begin.dhall
+        4: string.quoted.double.environment-variable.dhall
+        5: punctuation.definition.string.end.dhall
+        6: storage.modifier.hash.dhall
+        7: punctuation.separator.colon.dhall
+        8: constant.numeric.integer.hash.dhall
+        9: storage.modifier.as.dhall
+        10: storage.type.dhall
+  expression:
+    - include: forall
+    - include: strings
+    - include: single_strings
+    - include: line_comment
+    - include: block_comment
+    - include: numbers
+    - include: url
+    - include: file
+    - include: env
+    - include: record
+    - include: union
+    - include: list
+    - include: parens
+    - include: operators
+    - include: url
+    - include: lambda
+    - include: let
+    - include: keywords
+    - include: label
+  file:
+    - match: '((?:(?:\.\.?|~)?(?:(?:\/[^\s#\/\\,<>\?\(\)\[\]\{\}]+)*)(?:\/[^\s#\/\\,<>\?\(\)\[\]\{\}]+)))(?:\s*(sha256)(:)((?:[0-9a-fA-F]){64}))?(?:\s*(as)\s*(Text))?'
+      captures:
+        1: string.unquoted.file.dhall meta.path.file.dhall
+        2: storage.modifier.hash.dhall
+        3: punctuation.separator.colon.dhall
+        4: constant.numeric.integer.hash.dhall
+        5: storage.modifier.as.dhall
+        6: storage.type.dhall
+  forall:
+    - match: \bforall\b|∀
+      scope: storage.modifier.universal-quantifier.dhall
+  keywords:
+    - match: \b(let|in|as|using|merge|constructors)\b
+      scope: keyword.control.dhall
+    - match: \b(Type|Kind|Sort)\b
+      scope: keyword.other.dhall
+    - match: \b(True|False|NaN|Infinity|Some)\b
+      scope: constant.language.dhall
+    - match: \b(NaN|Infinity)\b
+      scope: constant.numeric.dhall
+    - match: \b(Natural/fold|Natural/build|Natural/isZero|Natural/even|Natural/odd|Natural/toInteger|Natural/show|Integer/toDouble|Integer/show|Double|Double/show|List/build|List/fold|List/length|List/head|List/last|List/indexed|List/reverse|Optional/fold|Optional/build)\b
+      scope: entity.name.function
+    - match: \b(Bool|Optional|None|Natural|Integer|Doule|Text|List)\b
+      scope: support.class.dhall
+    - match: \b(if|then|else)\b
+      scope: keyword.control.conditional.dhall
+  label:
+    - match: '(?:\p{Alpha}|_)(?:\p{Alpha}|\d|[-/_])*'
+      scope: meta.label.dhall
+    - match: '(`)((?:\p{Alpha}|\d|[-/_:\.])+)(`)'
+      captures:
+        1: punctuation.section.backtick.begin.dhall
+        2: meta.label.quoted.dhall
+        3: punctuation.section.backtick.end.dhall
+  labelBind:
+    - match: '(?:\p{Alpha}|_)(?:\p{Alpha}|\d|[-/_])*'
+      scope: variable.other.constant.dhall
+    - match: '(`)((?:\p{Alpha}|\d|[-/_:\.])+)(`)'
+      captures:
+        1: punctuation.section.backtick.begin.dhall
+        2: variable.other.constant.quoted.dhall
+        3: punctuation.section.backtick.end.dhall
+  labelPropertyType:
+    - match: '(?:\p{Alpha}|_)(?:\p{Alpha}|\d|[-/_])*(?=\s*:)'
+      scope: constant.other.attribute-name.dhall
+    - match: '(`)((?:\p{Alpha}|\d|[-/_:\.])+)(`)'
+      captures:
+        1: punctuation.section.backtick.begin.dhall
+        2: constant.other.attribute-name.quoted.dhall
+        3: punctuation.section.backtick.end.dhall
+  labelPropertyVar:
+    - match: '(?:\p{Alpha}|_)(?:\p{Alpha}|\d|[-/_])*(?=\s*=)'
+      scope: variable.object.property.dhall entity.name.tag
+    - match: '(`)((?:\p{Alpha}|\d|[-/_:\.])+)(`)'
+      captures:
+        1: punctuation.section.backtick.begin.dhall
+        2: variable.object.property.quoted.dhall
+        3: punctuation.section.backtick.end.dhall
+  lambda:
+    - match: λ|\\
+      scope: keyword.control.dhall
+  let:
+    - match: \blet\b
+      captures:
+        0: keyword.other.let.dhall
+      push:
+        - meta_scope: meta.declaration.expression.let.dhall
+        - match: (?=\bin\b)|(?=\let\b)
+          captures:
+            0: keyword.other.in.dhall
+          pop: true
+        - include: labelBind
+        - match: ':'
+          push:
+            - match: (?==)
+              pop: true
+            - include: expression
+        - match: '='
+          captures:
+            0: keyword.operator.assignment.dhall
+          push:
+            - meta_scope: meta.declaration.foobar.dhall
+            - match: (?=\bin\b)|(?=\let\b)
+              pop: true
+            - include: expression
+  line_comment:
+    - match: '--'
+      push:
+        - meta_scope: comment.line.double-dash.dhall
+        - match: $
+          pop: true
+  list:
+    - match: '\['
+      captures:
+        0: punctuation.section.brackets.begin.list.dhall
+      push:
+        - meta_scope: meta.brackets.list.dhall
+        - match: '\]'
+          captures:
+            0: punctuation.section.brackets.end.list.dhall
+          pop: true
+        - match: ','
+          scope: punctuation.separator.sequence.list.dhall
+        - include: expression
+  numbers:
+    - match: '[+-]?\d+(?:(\.)\d+(?:e[+-]?\d+)?|(?:e[+-]?\d+))'
+      scope: constant.numeric.float.dhall
+    - match: '(\+|\-)[\d]+'
+      scope: constant.numeric.integer.dhall
+    - match: '[\d]+'
+      scope: constant.numeric.natural.dhall
+  operators:
+    - match: (?:->|→)
+      scope: keyword.operator.arrow.dhall
+    - match: ':'
+      scope: keyword.other.colon.dhall
+    - match: '(?:\|{2}|&{2})'
+      scope: keyword.operator.logical.dhall
+    - match: '[!=]='
+      scope: keyword.operator.equality.dhall
+    - match: '='
+      scope: keyword.operator.assignment.dhall
+    - match: '(?:#|\+{2})'
+      scope: keyword.operator.sequence.dhall
+    - match: '[\+\*]'
+      scope: keyword.operator.arithmetic.dhall
+    - match: (?:∧|/\\|⩓|//\\\\|⫽|//)
+      scope: keyword.operator.combine.dhall
+  parens:
+    - match: \(
+      captures:
+        0: punctuation.section.parens.begin.dhall
+      push:
+        - meta_scope: meta.parens.dhall
+        - match: \)
+          captures:
+            0: punctuation.section.parens.end.dhall
+          pop: true
+        - include: expression
+  record:
+    - match: '\{'
+      captures:
+        0: keyword.operator.record.begin.dhall
+      push:
+        - meta_scope: meta.declaration.data.record.block.dhall
+        - match: '\}'
+          captures:
+            0: keyword.operator.record.end.dhall
+          pop: true
+        - match: ':'
+          captures:
+            0: punctuation.separator.dictionary.key-value.dhall
+          push:
+            - meta_scope: meta.declaration.data.record.type.dhall
+            - match: '(,)|(?=\})'
+              captures:
+                1: punctuation.separator.dictionary.pair.dhall
+              pop: true
+            - include: expression
+        - match: '='
+          captures:
+            0: punctuation.separator.dictionary.key-value.dhall
+          push:
+            - meta_scope: meta.declaration.data.record.literal.dhall
+            - match: '(,)|(?=\})'
+              captures:
+                1: punctuation.separator.dictionary.pair.dhall
+              pop: true
+            - include: expression
+        - include: assignment
+        - include: labelPropertyVar
+        - include: labelPropertyType
+        - include: label
+  single_strings:
+    - match: "''$"
+      push:
+        - meta_scope: string.quoted.single.dhall
+        - match: '''''(?!'')(?!\$\{)'
+          pop: true
+        - match: "'''"
+          scope: constant.character.escape.quotes.dhall
+        - match: '''''\$\{'
+          scope: constant.character.escape.interpolation.dhall
+        - match: '\$\{'
+          captures:
+            0: punctuation.section.curly.begin.dhall
+          push:
+            - meta_scope: constant.other.placeholder.dhall
+            - match: '\}'
+              captures:
+                0: punctuation.section.curly.end.dhall
+              pop: true
+            - include: expression
+  strings:
+    - match: '"'
+      push:
+        - meta_scope: string.quoted.double.dhall
+        - match: '"'
+          pop: true
+        - match: '\$\{'
+          captures:
+            0: punctuation.section.curly.begin.dhall
+          push:
+            - meta_scope: constant.other.placeholder.dhall
+            - match: '\}'
+              captures:
+                0: punctuation.section.curly.end.dhall
+              pop: true
+            - include: expression
+        - match: '\\(?:["$\\/bfnrt]|[u][a-fA-F0-9]{4})'
+          scope: constant.character.escape.sequence.dhall
+  union:
+    - match: <
+      captures:
+        0: keyword.operator.union.begin.dhall
+      push:
+        - meta_scope: meta.declaration.data.union.block.dhall
+        - match: '>'
+          captures:
+            0: keyword.operator.union.end.dhall
+          pop: true
+        - include: comments
+        - match: ':'
+          captures:
+            0: punctuation.separator.dictionary.key-value.dhall
+          push:
+            - meta_scope: meta.declaration.data.union.type.dhall
+            - match: (\|)|(?=\>)
+              captures:
+                1: punctuation.separator.dictionary.pair.dhall
+              pop: true
+            - include: expression
+        - match: '='
+          captures:
+            0: punctuation.separator.dictionary.key-value.dhall
+          push:
+            - meta_scope: meta.declaration.data.union.literal.dhall
+            - match: (\|)|(?=\>)
+              captures:
+                1: punctuation.separator.dictionary.pair.dhall
+              pop: true
+            - include: expression
+        - include: assignment
+        - include: labelPropertyVar
+        - include: labelPropertyType
+        - include: label
+  url:
+    - match: '((?:(?:https?):\/(?:(?:(?:(?:(?:\p{Alpha}|\d|[-\._~])|(?:%(?:[0-9a-fA-F]){2})|[!\$&''''\(\)\*\+,;=]|:)*)@)?(?:(?:\[(?:(?:(?:(?:(?:[0-9a-fA-F]){1,4}):){6}(?:(?:(?:[0-9a-fA-F]){1,4}):(?:(?:[0-9a-fA-F]){1,4})|(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)))|::(?:(?:(?:[0-9a-fA-F]){1,4}):){5}(?:(?:(?:[0-9a-fA-F]){1,4}):(?:(?:[0-9a-fA-F]){1,4})|(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)))|(?:(?:(?:[0-9a-fA-F]){1,4}))?::(?:(?:(?:[0-9a-fA-F]){1,4}):){4}(?:(?:(?:[0-9a-fA-F]){1,4}):(?:(?:[0-9a-fA-F]){1,4})|(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)))|(?:(?:(?:(?:[0-9a-fA-F]){1,4}):){1,}(?:(?:[0-9a-fA-F]){1,4}))?::(?:(?:(?:[0-9a-fA-F]){1,4}):){3}(?:(?:(?:[0-9a-fA-F]){1,4}):(?:(?:[0-9a-fA-F]){1,4})|(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)))|(?:(?:(?:(?:[0-9a-fA-F]){1,4}):){2,}(?:(?:[0-9a-fA-F]){1,4}))?::(?:(?:(?:[0-9a-fA-F]){1,4}):){2}(?:(?:(?:[0-9a-fA-F]){1,4}):(?:(?:[0-9a-fA-F]){1,4})|(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)))|(?:(?:(?:(?:[0-9a-fA-F]){1,4}):){3,}(?:(?:[0-9a-fA-F]){1,4}))?::(?:(?:(?:[0-9a-fA-F]){1,4}):){1}(?:(?:(?:[0-9a-fA-F]){1,4}):(?:(?:[0-9a-fA-F]){1,4})|(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)))|(?:(?:(?:(?:[0-9a-fA-F]){1,4}):){4,}(?:(?:[0-9a-fA-F]){1,4}))?::(?:(?:(?:[0-9a-fA-F]){1,4}):(?:(?:[0-9a-fA-F]){1,4})|(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)))|(?:(?:(?:(?:[0-9a-fA-F]){1,4}):){5,}(?:(?:[0-9a-fA-F]){1,4}))?::(?:(?:[0-9a-fA-F]){1,4})|(?:(?:(?:(?:[0-9a-fA-F]){1,4}):){6,}(?:(?:[0-9a-fA-F]){1,4}))?::)|(?:v(?:[0-9a-fA-F])+\.(?:(?:\p{Alpha}|\d|[-\._~])|[!\$&''''\(\)\*\+,;=]|:)+))\])|(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d))|(?:(?:(?:\p{Alpha}|\d|[-\._~])|(?:%(?:[0-9a-fA-F]){2})|[!\$&''''\(\)\*\+,;=])*))(?::(?:\d*))?)(?:(?:\/[^\s#\/\\,<>\?\(\)\[\]\{\}]+)*)(?:\/[^\s#\/\\,<>\?\(\)\[\]\{\}]+)(?:\\?(?:(?:(?:(?:\p{Alpha}|\d|[-\._~])|(?:%(?:[0-9a-fA-F]){2})|[!\$&''''\(\)\*\+,;=]|[:@])|[\/?])*))?(?:#(?:(?:(?:(?:\p{Alpha}|\d|[-\._~])|(?:%(?:[0-9a-fA-F]){2})|[!\$&''''\(\)\*\+,;=]|[:@])|[\/?])*))?))(?:\s*(sha256)(:)((?:[0-9a-fA-F]){64}))?(?:\s*(as)\s*(Text))?'
+      captures:
+        1: markup.underline.url.dhall
+        2: storage.modifier.hash.dhall
+        3: punctuation.separator.colon.dhall
+        4: constant.numeric.integer.hash.dhall
+        5: storage.modifier.as.dhall
+        6: storage.type.dhall
