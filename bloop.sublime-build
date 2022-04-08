@@ -1,3 +1,12 @@
+/* The following build file is used with bloop, to compile, clean and
+ * test scala code. It depends on the following :
+ *  - Terminus (Sublime Text Package)
+ *  - bloop cli
+ *  - lsp-metals ( or alternatively, you can export your build to bloop manually )
+ *    -- https://scalacenter.github.io/bloop/setup#sbt
+ *  - bloop-which-project
+*     -- simple script to determine which project the file belongs to
+ */
 {
   "target": "terminus_exec",
   "cancel": "terminus_cancel_build",
@@ -6,19 +15,19 @@
   "keyfiles": ["project/metals.sbt"],
   "file_regex": "^\\[E\\] \\[E\\d+\\] (..*?):(\\d+):(\\d+)",
   "working_dir": "$folder",
-  "shell_cmd": "bloop compile `bloop projects | head -1`",
+  "shell_cmd": "bloop compile `bloop-which-project \"${file}\"`",
   "variants": [
     {
       "name": "Test",
-      "shell_cmd": "bloop test `bloop projects | head -1` --only \"*${file_base_name}\" --only \"*${file_base_name}Spec\" --only \"*${file_base_name}Suite\""
+      "shell_cmd": "bloop test `bloop-which-project \"${file}\"` --only \"*${file_base_name}\""
     },
     {
       "name": "Test All",
-      "shell_cmd": "bloop test `bloop projects | head -1`"
+      "shell_cmd": "bloop test `bloop-which-project \"${file}\"`"
     },
     {
       "name": "Run",
-      "shell_cmd": "bloop run `bloop projects | head -1`"
+      "shell_cmd": "bloop run `bloop-which-project \"${file}\"`"
     },
     {
       "name": "Clean",
@@ -26,11 +35,11 @@
     },
     {
       "name": "Console",
-      "shell_cmd": "bloop console `bloop projects | head -1`"
+      "shell_cmd": "bloop console `bloop-which-project \"${file}\"`"
     },
     {
       "name": "Import Build",
-      "shell_cmd": "sbt bloopInstall && bloop compile `bloop projects | head -1`"
+      "shell_cmd": "sbt bloopInstall && bloop compile `bloop-which-project \"${file}\"`"
     }
   ]
 }
