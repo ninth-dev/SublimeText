@@ -1,8 +1,10 @@
 {
 	// "log_debug": true,
 	// "log_server": ["panel"],
+	// "log_max_size": 0,
 	"show_view_status": true,
-	"show_references_in_quick_panel": true,
+	"show_references_in_quick_panel": false,
+	"show_diagnostics_panel_on_save": 1,
 	"show_diagnostics_count_in_view_status": true,
 	"show_code_actions": "",
 	"show_code_actions_in_hover": false,

@@ -4,11 +4,56 @@
   { "keys": ["ctrl+]"], "command": "jump_forward" },
 
   //  Go To Definition
-  { "keys": ["super+alt+down"], "command": "goto_definition", "args": { "side_by_side": true, "clear_to_right": true } },
-  { "keys": ["super+alt+down"], "command": "lsp_symbol_definition", "args": { "side_by_side": true }, "context":
-    [
-      { "key": "lsp.session_with_capability", "operator": "equal", "operand": "definitionProvider" },
-      { "key": "auto_complete_visible", "operator": "equal", "operand": false }
+  { "keys": ["super+alt+down"], "command": "chain",
+    "args": { "commands": [
+        {"command": "explore"},
+        {"command": "unmaximize_pane"},
+        {"command": "goto_definition"}
+    ]}
+  },
+
+  // go to def
+  // expand 2 groups
+  // go to def LSP
+  { "keys": ["super+alt+down"],
+    "command": "chain",
+    "args": { "commands": [
+        {"command": "explore"},
+        {"command": "unmaximize_pane"},
+        {"command": "lsp_symbol_definition",
+          "args": {
+            "side_by_side": false,
+            "fallback": true,
+            "force_group": true,
+            "group": 1
+          }
+        }
+    ]},
+    "context":
+      [
+        { "key": "lsp.session_with_capability", "operator": "equal", "operand": "definitionProvider" },
+        { "key": "auto_complete_visible", "operator": "equal", "operand": false }
+      ]
+  },
+
+  // Goto Type Definition
+  { "keys": ["super+alt+t"],
+    "command": "chain",
+    "args": { "commands": [
+        {"command": "explore"},
+        {"command": "unmaximize_pane"},
+        {"command": "lsp_symbol_type_definition",
+          "args": {
+            "side_by_side": false,
+            "fallback": true,
+            "force_group": true,
+            "group": 1
+          }
+        }
+    ]},
+    "context": [
+        {"key": "lsp.session_with_capability", "operand": "typeDefinitionProvider"},
+        {"key": "auto_complete_visible", "operand": false}
     ]
   },
 
@@ -23,7 +68,7 @@
 
   // Find References
 
-  { "keys": ["super+alt+shift+down"], "command": "goto_reference", "args": { "side_by_side": true, "clear_to_right": true } },
+  { "keys": ["super+alt+shift+down"], "command": "goto_reference" },
   { "keys": ["super+alt+shift+down"], "command": "lsp_symbol_references", "context":
     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "referencesProvider" }]
   },
@@ -46,18 +91,13 @@
   { "keys": ["super", "super"], "command": "lsp_hover", "context":
     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider" }]
   },
-  // { "keys": ["super", "super"], "command": "lsp_metals_hover_range", "context":
-  //   [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider" },
-  //    {"key": "selector", "operator": "equal", "operand": "source.scala"}]
-  // },
+
   { "keys": ["super+shift+a"], "command": "lsp_expand_selection", "context":
     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "selectionRangeProvider" }]
   },
+
   { "keys": ["option+enter"], "command": "lsp_code_actions", "context":
     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider"}]
-  },
-  { "keys": ["tab"], "command": "commit_completion", "context":
-    [{ "key": "auto_complete_visible" }]
   },
 
   { "keys" : ["super+k", "super+c"], "command": "chain", "args": {
@@ -78,7 +118,7 @@
     }
   },
 
-  { "keys" : ["super+j", "super+b"], "command": "chain", "args": {
+  { "keys" : ["super+j", "super+j"], "command": "chain", "args": {
     "commands":
       [
         {"command": "unfold_all"},
@@ -87,5 +127,20 @@
         {"command": "unfold"}
       ]
     }
-  }
+  },
+  {
+    "keys": ["super+k", "super+p"],
+    "command": "show_overlay",
+    "args": {"overlay": "command_palette", "command": "switch_window"}
+  },
+  { "keys": ["super+\\"], "command": "focus_neighboring_group"},
+  { "keys": ["shift+super+\\"], "command": "max_pane"},
+  { "keys": ["super+w"], "command": "close_pane", "context":
+    [
+      { "key": "group_has_transient_sheet", "operator": "equal", "operand": true }
+    ]
+  },
+
+  { "keys": ["alt+up"], "command": "scroll_lines", "args": {"amount": 10.0} },
+  { "keys": ["alt+down"], "command": "scroll_lines", "args": {"amount": -10.0} },
 ]

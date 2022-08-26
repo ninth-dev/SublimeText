@@ -13,17 +13,31 @@
   "auto_close": false,
   "timeit": true,
   "keyfiles": ["project/metals.sbt"],
+  "selector": "source.scala",
   "file_regex": "^\\[E\\] \\[E\\d+\\] (..*?):(\\d+):(\\d+)",
   "working_dir": "$folder",
   "shell_cmd": "bloop compile `bloop-which-project \"${file}\"`",
   "variants": [
     {
-      "name": "Test",
-      "shell_cmd": "bloop test `bloop-which-project \"${file}\"` --only \"*${file_base_name}\""
+      "name": "Compile All",
+      "shell_cmd": "bloop compile integration-test && bloop compile root-test && bloop compile root"
     },
     {
-      "name": "Test All",
+      "name": "Test",
+      // "shell_cmd": "bloop test `bloop-which-project \"${file}\"` --only \"*${file_base_name}\""
+      "shell_cmd": "bloop test `bloop-which-project \"${file}\"` --only \"*`echo \"${file}\" | rg '([^/]*?/${file_base_name})' -o | sed -e 's/\\//./g'`\""
+    },
+    {
+      "name": "Test Project",
       "shell_cmd": "bloop test `bloop-which-project \"${file}\"`"
+    },
+    {
+      "name": "Test - root-test",
+      "shell_cmd": "bloop test root-test --propagate=true"
+    },
+    {
+      "name": "Test - integration-test",
+      "shell_cmd": "bloop test integration-test --propagate=true"
     },
     {
       "name": "Run",
@@ -39,7 +53,7 @@
     },
     {
       "name": "Import Build",
-      "shell_cmd": "sbt bloopInstall && bloop compile `bloop-which-project \"${file}\"`"
+      "shell_cmd": "sbt bloopInstall"
     }
   ]
 }

@@ -1,1 +1,0 @@
-[{ "caption" : "Toggle Spell Check", "command": "toggle_setting", "args": {"setting": "spell_check"} }]

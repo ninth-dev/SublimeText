@@ -10,8 +10,20 @@
         "--stdout",
         "--non-interactive"
        ],
+    },
+    {
+       "selector": "source.rust",
+       "cmd": [
+         "rustfmt",
+         "--emit",
+         "stdout",
+         "--quiet",
+         "$file_name"
+       ]
     }
   ],
   "cwd_mode": "project_root",
-  "format_on_save": true
+  "format_on_save": true,
+  "error_style": "console",
+  "merge_type": "diff"
 }

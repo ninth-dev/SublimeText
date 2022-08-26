@@ -1,0 +1,33 @@
+{
+  "target": "terminus_exec",
+  "cancel": "terminus_cancel_build",
+  "auto_close": false,
+  "timeit": true,
+  "selector": "source.scala",
+  "file_patterns": ["*.scala"],
+  "keyfiles": ["!project/metals.sbt"],
+  "working_dir": "$folder",
+  "shell_cmd": "scala-cli run \"${file}\"",
+  "variants": [
+    {
+      "name": "Setup IDE",
+      "shell_cmd": "scala-cli setup-ide \"${file}\""
+    },
+    {
+      "name": "Compile",
+      "shell_cmd": "scala-cli compile \"${file}\""
+    },
+    {
+      "name": "Run - All",
+      "shell_cmd": "scala-cli run \"${folder}\" --main-class \"${file_base_name}\""
+    },
+    {
+      "name": "Test",
+      "shell_cmd": "scala-cli test \"${file}\""
+    },
+    {
+      "name": "Clean",
+      "shell_cmd": "scala-cli clean \"${folder}\""
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+[
+  { "caption" : "Toggle Spell Check", "command": "toggle_setting", "args": {"setting": "spell_check"} },
+  { "caption" : "File: Close Unmodified Tabs ", "command": "close_unmodified", "args": {"group": -1} }
+]

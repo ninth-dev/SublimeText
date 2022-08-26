@@ -1,11 +1,9 @@
 {
-  "server_version": "0.11.2",
+  "server_version": "1.1.0",
   "server_properties":[
     "-Dmetals.client=sublime",
     "-XX:+UseG1GC",
     "-XX:+UseStringDeduplication",
-    "-XX:+UnlockExperimentalVMOptions",
-    "-XX:+UseJVMCICompiler",
     "-Xss4m",
     "-Xms100m"
   ],
@@ -14,12 +12,13 @@
       "superMethodLensesEnabled": true,
       "showInferredType": false,
       "showImplicitArguments": false,
-      "showImplicitConversionsAndClasses": false
-    }
+      "showImplicitConversionsAndClasses": false,
+    },
   },
   "initializationOptions":  {
-    // "inlineDecorationProvider": false,
-    "doctorProvider": "html",
-    "icons": "none"
-  }
+    "inlineDecorationProvider": false,
+    "doctorProvider": "json",
+    "icons": "none",
+  },
+  "enabled": true,
 }
