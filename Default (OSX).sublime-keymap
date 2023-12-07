@@ -3,6 +3,9 @@
   { "keys": ["ctrl+["], "command": "jump_back" },
   { "keys": ["ctrl+]"], "command": "jump_forward" },
 
+  { "keys": ["super+,"], "command": "git_files_prev_modification" },
+  { "keys": ["super+."], "command": "git_files_next_modification" },
+
   //  Go To Definition
   { "keys": ["super+alt+down"], "command": "chain",
     "args": { "commands": [

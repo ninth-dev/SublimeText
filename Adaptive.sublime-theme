@@ -1,0 +1,13 @@
+// Documentation at https://www.sublimetext.com/docs/themes.html
+
+{
+  "variables":
+  {
+    "font_face": "Atkinson Hyperlegible",
+    "font_size_sm": 12,
+    "font_size": 13,
+    "font_size_lg": 14,
+    "font_size_title": 25,
+   },
+   "rules": []
+}

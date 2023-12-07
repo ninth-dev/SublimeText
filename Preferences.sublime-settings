@@ -10,8 +10,8 @@
   "ensure_newline_at_eof_on_save": true,
   "find_selected_text": false,
   "fade_fold_buttons": false,
-  "font_size": 14,
-  "font_options": ["no_liga"],
+  "font_size": 15,
+  "font_options": ["no_liga", "no_clig", "no_calt"],
   "line_padding_bottom": 6,
   "line_padding_top": 6,
   "margin": 10,
@@ -22,7 +22,7 @@
   "translate_tabs_to_spaces": true,
   "trim_trailing_white_space_on_save": "all",
   "word_wrap": false,
-  "rulers": [[80,"dotted"], [120, "stippled"], [140,"solid"]],
+  "rulers": [[80,"dotted", 2], [120, "stippled"], [140,"solid", 5]],
   "dictionary": "Packages/Language - English/en_US.dic",
   "ignored_packages": [
     "Vintage",
@@ -59,4 +59,5 @@
         "tmp", "|.git", "|.svn", "|.bloop", "|.metals", "target", "|.idea", "generated", "|.bsp"
     ],
     },
+  "font_face": "IosevkaNerdFontM Nerd Font Mono",
 }
