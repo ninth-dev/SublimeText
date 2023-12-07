@@ -100,19 +100,23 @@ contexts:
     - include: meta-colons
   comments:
     - include: block-comments
-    - match: '(^[ \t]+)?(?=//)'
+    - match: (//).*$
+      scope: comment.line.double-slash.scala
       captures:
-        1: punctuation.whitespace.comment.leading.scala
-      push:
-        - match: (?!\G)
-          pop: true
-        - match: //
-          captures:
-            0: punctuation.definition.comment.scala
-          push:
-            - meta_scope: comment.line.double-slash.scala
-            - match: \n
-              pop: true
+        1: punctuation.definition.comment.scala
+    # - match: '(^[ \t]+)?(?=//)'
+    #   captures:
+    #     1: punctuation.whitespace.comment.leading.scala
+    #   push:
+    #     - match: (?!\G)
+    #       pop: true
+    #     - match: //
+    #       captures:
+    #         0: punctuation.definition.comment.scala
+    #       push:
+    #         - meta_scope: comment.line.double-slash.scala
+    #         - match: \n
+    #           pop: true
   constants:
     - match: \b(?:String|Unit|Boolean|Byte|Char|Short|Int|Float|Long|Double|Any|AnyRef|AnyVal|Nothing)\b
       scope: storage.type.primitive.scala
