@@ -14,7 +14,6 @@
 		"GenerateUUID",
 		"GitDiffView",
 		"HOCON Syntax Highlighting",
-		"JiraOpen",
 		"JsPrettier",
 		"LSP",
 		"LSP-bash",
@@ -40,6 +39,7 @@
 		"Scoggle",
 		"Search in Project",
 		"sensory-underload",
+		"Stacks",
 		"Switch Window",
 		"Tab Filter",
 		"Terminus",
@@ -55,5 +55,6 @@
 		"https://github.com/ssanj/OpenTabs",
 		"https://github.com/ninth-dev/ZoomGroup",
 		"https://github.com/ssanj/sensory-underload",
+		"https://github.com/ssanj/Stacks",
 	],
 }
