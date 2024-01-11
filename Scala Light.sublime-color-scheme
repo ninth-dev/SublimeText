@@ -18,6 +18,7 @@
         "green2": "hsla(88, 85%, 84%, 0.84)",
         "grey": "hsl(0, 0%, 20%)",
         "grey1": "hsl(210, 15%, 56%)",
+        "grey2": "hsl(230, 10%, 70%)",
         "lime": "hsla(88, 85%, 84%, 0.84)",
         "lime-highlight-bg": "color(var(lime) alpha(0.05))",
         "orange": "hsl(32, 93%, 66%)",
@@ -67,7 +68,7 @@
             "name": "Comment",
             "scope": "source.scala comment, source.scala punctuation.definition.comment",
             "foreground": "var(grey1)",
-            "background": "var(black)",
+            "background": "var(black2)",
         },
         {
             "name": "String",
@@ -95,7 +96,7 @@
         {
             "name": "Scaladoc Keyword",
             "scope": "source.scala keyword.other.documentation",
-            "foreground": "var(white)",
+            "foreground": "var(grey2)",
         },
         {
             "name": "Function Braces",
