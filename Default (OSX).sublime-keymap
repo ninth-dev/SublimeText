@@ -9,7 +9,7 @@
   //  Go To Definition
   { "keys": ["super+alt+down"], "command": "chain",
     "args": { "commands": [
-        {"command": "explore"},
+        {"command": "two_panes"},
         {"command": "unmaximize_pane"},
         {"command": "goto_definition"}
     ]}
@@ -21,7 +21,7 @@
   { "keys": ["super+alt+down"],
     "command": "chain",
     "args": { "commands": [
-        {"command": "explore"},
+        {"command": "two_panes"},
         {"command": "unmaximize_pane"},
         {"command": "lsp_symbol_definition",
           "args": {
@@ -43,7 +43,7 @@
   { "keys": ["super+alt+t"],
     "command": "chain",
     "args": { "commands": [
-        {"command": "explore"},
+        {"command": "two_panes"},
         {"command": "unmaximize_pane"},
         {"command": "lsp_symbol_type_definition",
           "args": {

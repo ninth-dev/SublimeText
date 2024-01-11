@@ -33,7 +33,8 @@
     // scala related
     ".bloop", ".bsp",
     "project/project", "project/target",
-    "tmp"
+    "tmp",
+    ".worktrees"
   ],
   "binary_file_patterns": [
     "*.jpg", "*.jpeg", "*.png", "*.gif", "*.ttf", "*.tga", "*.dds",
