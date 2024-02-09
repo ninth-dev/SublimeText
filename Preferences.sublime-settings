@@ -10,7 +10,7 @@
   "ensure_newline_at_eof_on_save": true,
   "find_selected_text": false,
   "fade_fold_buttons": false,
-  "font_size": 15,
+  "font_size": 12,
   "font_options": ["no_liga", "no_clig", "no_calt"],
   "line_padding_bottom": 6,
   "line_padding_top": 6,
@@ -31,7 +31,8 @@
     ".svn", ".git", ".hg", "CVS", ".Trash", ".Trash-*",
     ".idea",
     // scala related
-    ".bloop", ".bsp",
+    ".bloop",
+    ".bsp",
     "project/project", "project/target",
     "tmp",
     ".worktrees"
