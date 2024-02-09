@@ -60,5 +60,4 @@
         "tmp", "|.git", "|.svn", "|.bloop", "|.metals", "target", "|.idea", "generated", "|.bsp"
     ],
     },
-  "font_face": "IosevkaNerdFontM Nerd Font Mono",
 }
