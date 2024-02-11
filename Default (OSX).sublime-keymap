@@ -6,6 +6,24 @@
   { "keys": ["super+,"], "command": "git_files_prev_modification" },
   { "keys": ["super+."], "command": "git_files_next_modification" },
 
+  // Close Other
+  { "keys": ["super+k", "super+w"], "command": "close_others_by_index", "args": {"group": -1, "index": -1}},
+  { "keys": ["super+k", "super+q"], "command": "chain",
+    "args": {"commands": [
+      {"command": "close_all"},
+      {
+        "command": "set_layout",
+        "args": {
+          "cols": [0.0, 1.0],
+          "rows": [0.0, 1.0],
+          "cells": [[0, 0, 1, 1]]
+        }
+      },
+    ]}
+  },
+
+  { "keys": ["super+k", "super+v"], "command": "clone_file", "args": {"add_to_selection": false}},
+
   //  Go To Definition
   { "keys": ["super+alt+down"], "command": "chain",
     "args": { "commands": [
@@ -100,7 +118,10 @@
   },
 
   { "keys": ["option+enter"], "command": "lsp_code_actions", "context":
-    [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "hoverProvider"}]
+    [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "codeActionProvider"}]
+  },
+  { "keys": ["option+super+enter"], "command": "lsp_code_actions", "args": {"only_kinds": ["source"]}, "context":
+    [{"key": "lsp.session_with_capability", "operand": "codeActionProvider.codeActionKinds"}]
   },
 
   { "keys" : ["super+k", "super+c"], "command": "chain", "args": {

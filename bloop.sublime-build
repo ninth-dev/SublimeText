@@ -25,6 +25,7 @@
     {
       "name": "Test",
       // "shell_cmd": "bloop test `bloop-which-project \"${file}\"` --only \"*${file_base_name}\""
+      // "shell_cmd": "set -x; bloop test `bloop-which-project \"${file}\"` --only \"*.`echo \"${file}\" | rg '([^/]*?/${file_base_name})' -o | sed -e 's/\\//./g'`\""
       "shell_cmd": "bloop test `bloop-which-project \"${file}\"` --only \"*`echo \"${file}\" | rg '([^/]*?/${file_base_name})' -o | sed -e 's/\\//./g'`\""
     },
     {

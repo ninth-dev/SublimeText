@@ -12,6 +12,11 @@ This is my personal SublimeText settings.
 git clone git@github.com:ninth-dev/SublimeText.git "${HOME}/Library/Application Support/Sublime Text/Packages/User"
 ```
 
+### Micro Plugins
+
+#### TwoPanes
+Open at most two panes.
+
 ### Scala 3 Syntax Support
 
 This is a **temporary measure** until there are updates in the [Official Default Packages]((https://github.com/sublimehq/Packages/issues/2795)).
