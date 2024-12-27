@@ -5,6 +5,10 @@
     "${node_bin}",
     "${server_path}",
     "--stdio",
-    "--tsserver-path=${folder}/node_modules/typescript/lib/tsserver.js",
-  ]
+    // "--tsserver-path=${folder}/node_modules/typescript/lib/tsserver.js",
+  ],
+  "initializationOptions": {
+    "tsserver.path": "${folder}/node_modules/typescript/lib/tsserver.js"
+  }
+
 }

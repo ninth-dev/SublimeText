@@ -1,0 +1,28 @@
+<snippet>
+  <content><![CDATA[
+rules = [
+  RedundantSyntax,
+  OrganizeImports
+]
+
+OrganizeImports {
+  blankLines = Auto
+  coalesceToWildcardImportThreshold = 5
+  expandRelative = false
+  groupExplicitlyImportedImplicitsSeparately = false
+  groupedImports = Merge
+  groups = [
+    "*"
+    "re:(javax?|scala)\\\\."
+  ]
+  importSelectorsOrder = Ascii
+  importsOrder = Ascii
+  preset = INTELLIJ_2020_3
+  removeUnused = true
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>sfo</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.ini</scope>
+</snippet>

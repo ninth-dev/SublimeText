@@ -1,5 +1,5 @@
 {
-  "server_version": "1.2.1",
+  "server_version": "1.4.2",
   "server_properties":[
     "-Dmetals.client=sublime",
     "-XX:+UseG1GC",
@@ -9,15 +9,27 @@
   ],
   "settings": {
     "metals": {
+      "inlayHints": {
+        "typeParameters" : {
+          "enable": true
+        },
+        "implicitConversions": {
+          "enable": true
+        },
+        "implicitArguments": {
+          "enable": true
+        },
+        "inferredTypes" : {
+          "enable": true
+        },
+        "hintsInPatternMatch" : {
+          "enable": true
+        }
+      },
       "superMethodLensesEnabled": true,
-      "showInferredType": false,
-      "showImplicitArguments": false,
-      "showImplicitConversionsAndClasses": false,
     },
   },
   "initializationOptions":  {
-    "inlineDecorationProvider": false,
-    "doctorProvider": "json",
     "icons": "none",
   },
   "enabled": true,

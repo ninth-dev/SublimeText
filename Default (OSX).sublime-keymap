@@ -78,13 +78,38 @@
     ]
   },
 
+  // Goto Implementation
+  { "keys": ["super+alt+i"],
+    "command": "chain",
+    "args": { "commands": [
+        {"command": "two_panes"},
+        {"command": "unmaximize_pane"},
+        {"command": "lsp_symbol_implementation",
+          "args": {
+            "side_by_side": false,
+            "fallback": true,
+            "force_group": true,
+            "group": 1
+          }
+        }
+    ]},
+    "context": [
+        {"key": "lsp.session_with_capability", "operand": "implementationProvider"},
+        {"key": "auto_complete_visible", "operand": false}
+    ]
+  },
+
+  // toggle inlay hints
+  {
+      "command": "lsp_toggle_inlay_hints",
+      "keys": ["super+k", "super+h"],
+      "context": [{"key": "lsp.session_with_capability", "operand": "inlayHintProvider"}]
+  },
+
   // https://microsoft.github.io/language-server-protocol/specifications/specification-3-17/#serverCapabilities
   // to find the operand for `lsp.session_with_capability`
 
   // find all the commands for lsp_
-
-  // Go To Type Defintion XXX - Define them when we really need them
-  // Go To Declaration XXX - Define them when we really need them
   // Go To Implemention XXX - Define them when we really need them
 
   // Find References
@@ -93,6 +118,7 @@
   { "keys": ["super+alt+shift+down"], "command": "lsp_symbol_references", "context":
     [{ "key": "lsp.session_with_capability", "operator": "equal", "operand": "referencesProvider" }]
   },
+
 
   // Document Symbols (a replacement for ST's "Goto Symbol")
   { "keys": ["super+r"], "command": "lsp_document_symbols", "context":
@@ -167,4 +193,19 @@
 
   { "keys": ["alt+up"], "command": "scroll_lines", "args": {"amount": 10.0} },
   { "keys": ["alt+down"], "command": "scroll_lines", "args": {"amount": -10.0} },
+
+  // { "keys": ["ctrl+."], "command": "chain",
+  //   "args": {
+  //     "commands": [
+  //       {"args": {"characters": "." }, "command": "insert" },
+  //       {"args": null, "command": "auto_complete" },
+  //       // {"args": {"characters": " " }, "command": "insert" },
+  //       // {"command": "left_delete", "args": null},
+  //       // {"command": "left_delete", "args": null},
+  //       // {"args": {"characters": "."}, "command": "insert"},
+  //       // {"command": "auto_compelete"},
+  //     ]
+  //   },
+  // },
+
 ]

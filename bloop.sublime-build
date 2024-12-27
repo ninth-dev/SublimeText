@@ -19,6 +19,10 @@
   "shell_cmd": "bloop compile `bloop-which-project \"${file}\"`",
   "variants": [
     {
+      "name": "Compile - root",
+      "shell_cmd": "bloop compile root"
+    },
+    {
       "name": "Compile All",
       "shell_cmd": "bloop compile integration-test && bloop compile root-test && bloop compile root"
     },

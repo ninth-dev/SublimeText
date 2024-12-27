@@ -10,6 +10,8 @@
         "--stdout",
         "--non-interactive"
        ],
+      "cwd_mode": "project_root",
+      "format_on_save": true
     },
     {
        "selector": "source.rust",
@@ -22,8 +24,6 @@
        ]
     }
   ],
-  "cwd_mode": "project_root",
-  "format_on_save": true,
   "error_style": "console",
   "merge_type": "diff"
 }
