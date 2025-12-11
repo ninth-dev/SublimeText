@@ -1,4 +1,8 @@
 [
+  { "keys": ["super+shift+k"],
+    "command": "run_macro_file",
+    "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"}
+  },
   // To prevent overrides from plugins
   { "keys": ["ctrl+["], "command": "jump_back" },
   { "keys": ["ctrl+]"], "command": "jump_forward" },

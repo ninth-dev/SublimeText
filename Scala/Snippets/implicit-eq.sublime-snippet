@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+implicit val eq${1:TypeName}: Eq[${1:TypeName}] = Eq.fromUniversalEquals
+]]></content>
+  <tabTrigger>imeq</tabTrigger>
+  <scope>source.scala</scope>
+  <description>implicit eq instance</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+import cats.syntax.all._
+]]></content>
+  <tabTrigger>icsa</tabTrigger>
+  <scope>source.scala</scope>
+  <description>import cats syntax</description>
+</snippet>

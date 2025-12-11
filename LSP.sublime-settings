@@ -8,5 +8,54 @@
 	"show_diagnostics_count_in_view_status": true,
 	"show_code_actions": "",
 	"show_code_actions_in_hover": false,
-	"show_symbol_action_links": false
+	"show_symbol_action_links": false,
+	"clients": {
+        "ruby-lsp": {
+            "enabled": true,
+            "command": ["ruby-lsp"],
+            "selector": "source.ruby | text.html.ruby",
+            "initializationOptions": {
+                "enabledFeatures": {
+                    "diagnostics": true,
+                },
+                "experimentalFeaturesEnabled": true,
+            },
+        },
+        "harper-ls": {
+             "enabled": false,
+             "command": [
+               "harper-ls",
+               "--stdio"
+            ],
+             "selector": "source.markdown | text.html.markdown | text.plain",
+             "settings": {
+                "harper-ls": {
+                    "userDictPath": "",
+                    "fileDictPath": "",
+                    "linters": {
+                        "SpellCheck": true,
+                        "SpelledNumbers": false,
+                        "AnA": true,
+                        "SentenceCapitalization": true,
+                        "UnclosedQuotes": true,
+                        "WrongQuotes": false,
+                        "LongSentences": true,
+                        "RepeatedWords": true,
+                        "Spaces": true,
+                        "Matcher": true,
+                        "CorrectNumberSuffix": true,
+                    },
+                    "codeActions": {
+                        "ForceStable": false,
+                    },
+                    "markdown": {
+                        "IgnoreLinkTitle": false,
+                    },
+                    "diagnosticSeverity": "hint",
+                    "isolateEnglish": false,
+                    "dialect": "American",
+                },
+             },
+           },
+    },
 }

@@ -1,3 +1,5 @@
 [
   { "caption" : "Toggle Spell Check", "command": "toggle_setting", "args": {"setting": "spell_check"} },
+  { "caption" : "Copy File Name", "command": "copy_file_name" },
+  { "caption" : "Copy Relative File Path", "command": "copy_relative_file_path" }
 ]
