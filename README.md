@@ -17,14 +17,7 @@ git clone git@github.com:ninth-dev/SublimeText.git "${HOME}/Library/Application 
 #### TwoPanes
 Open at most two panes.
 
-### Scala 3 Syntax Support
-
-This is a **temporary measure** until there are updates in the [Official Default Packages]((https://github.com/sublimehq/Packages/issues/2795)).
-
-Ported over Scala 3 from [vscode-scala-syntax](https://github.com/scala/vscode-scala-syntax) and slightly modified.
-
-- See [Scala.sublime-syntax](./Scala3/Scala.sublime-syntax)
-- The `Mariana.sublime-color-scheme` has also been extended.
+### Tips
 
 #### How to convert `.tmLanguage` to `.sublime-syntax` ?
 
